@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tanin: #7D4E2D;
+  --cuivre: #B8825A;
+  --ivoire: #FDFAF6;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background-color: #FDFAF6;
+  color: #1A1714;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Curseur custom : mèche de cheveu ondulée, tanin */
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M3 14 C7 7 11 21 15 14 S23 7 25 14' fill='none' stroke='%237D4E2D' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") 4 14, auto;
+}
+a, button, [role="button"], summary { cursor: pointer; }
+
+/* Anti-vol images */
+img:not([data-allow]) { -webkit-user-drag: none; user-select: none; pointer-events: none; }
+
+/* Grain bois très subtil sur tout le site */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Fibre de tanin — lignes horizontales très fines */
+.fibre {
+  background-image: repeating-linear-gradient(0deg, rgba(125,78,45,0.05) 0px, rgba(125,78,45,0.05) 1px, transparent 1px, transparent 7px);
+}
+
+/* Wraps */
+.wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.wrap-wide { width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+@media (min-width: 768px){ .wrap, .wrap-wide { padding: 0 44px; } }
+
+/* Eyebrow */
+.eyebrow { font-family: var(--font-karla), sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.22em; }
+
+/* Reveal (IntersectionObserver + CSS — fiable, jamais de contenu masqué) */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); will-change: opacity, transform; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* Marquee */
+.marquee-track { display: inline-flex; white-space: nowrap; animation: marquee 30s linear infinite; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* Underline animée */
+.link-underline { position: relative; }
+.link-underline::after { content:''; position:absolute; left:0; bottom:-3px; width:100%; height:1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+.link-underline:hover::after { transform: scaleX(1); }
+
+/* Silk wave — révélation au load (métaphore tanin qui coule) */
+@keyframes silk-load { 0% { transform: translateX(-104%); } 100% { transform: translateX(0); } }
+.silk-load { animation: silk-load 2.6s cubic-bezier(0.16,1,0.3,1) both; }
+.silk-load-2 { animation: silk-load 2.6s cubic-bezier(0.16,1,0.3,1) 0.5s both; }
+
+/* Toggle diagnostic — sélection clip-path qui s'étale */
+.toggle-opt { position: relative; overflow: hidden; }
+.toggle-opt .fill { position:absolute; inset:0; background: var(--tanin); clip-path: circle(0% at 50% 50%); transition: clip-path 0.6s cubic-bezier(0.16,1,0.3,1); z-index:0; }
+.toggle-opt.is-on .fill { clip-path: circle(150% at 50% 50%); }
+.toggle-opt > span { position: relative; z-index: 1; }
+
+/* Hover vague sur card lissage */
+.silk-card .silk-bg { opacity: 0; transition: opacity 1s ease; }
+.silk-card:hover .silk-bg { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .silk-load, .silk-load-2 { animation: none !important; transform: none !important; }
+}
