@@ -3,10 +3,9 @@ import { Reveal } from '@/components/ui/Reveal'
 import { cn } from '@/lib/utils'
 
 const tiles = [
-  { src: 'salon-01', span: 'md:col-span-8', h: 'md:h-[360px]', alt: 'Vue du salon — appartement parisien' },
-  { src: 'salon-02', span: 'md:col-span-4', h: 'md:h-[360px]', alt: 'Détail décor & canapé' },
-  { src: 'salon-03', span: 'md:col-span-5', h: 'md:h-[300px]', alt: 'Produits & soins' },
-  { src: 'salon-04', span: 'md:col-span-7', h: 'md:h-[300px]', alt: 'Ambiance du salon' },
+  { src: 'salon-01', span: 'md:col-span-7', h: 'md:h-[380px]', alt: 'Vue du salon — appartement parisien' },
+  { src: 'salon-02', span: 'md:col-span-5', h: 'md:h-[380px]', alt: 'Espace & produits du salon' },
+  { src: 'salon-03', span: 'md:col-span-12', h: 'md:h-[300px]', alt: 'Les produits — soins capillaires' },
 ]
 
 export function LeSalon() {

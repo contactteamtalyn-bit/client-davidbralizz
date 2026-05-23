@@ -5,11 +5,13 @@ import { cn } from '@/lib/utils'
 
 const shots = [
   { src: 'r-01', ratio: 'aspect-[3/4]' },
-  { src: 'r-02', ratio: 'aspect-square' },
+  { src: 'r-02', ratio: 'aspect-[3/4]' },
   { src: 'r-03', ratio: 'aspect-[4/5]' },
-  { src: 'r-04', ratio: 'aspect-[4/5]' },
-  { src: 'r-05', ratio: 'aspect-[3/4]' },
-  { src: 'r-06', ratio: 'aspect-square' },
+  { src: 'r-04', ratio: 'aspect-[3/4]' },
+  { src: 'r-05', ratio: 'aspect-[4/5]' },
+  { src: 'r-06', ratio: 'aspect-[3/4]' },
+  { src: 'r-07', ratio: 'aspect-[3/4]' },
+  { src: 'r-08', ratio: 'aspect-square' },
 ]
 
 export function Realisations() {
